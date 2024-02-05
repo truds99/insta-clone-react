@@ -18,22 +18,23 @@ function Post(props) {
 
     const[isLiked, setIsLiked] = React.useState(props.isLiked);
 
-    function like(){
-        !isLiked ? setIsLiked(true) : setIsLiked(false);
+    function toggleLike(){
+        setIsLiked(!isLiked);
     }
+
 
     return (
         <div class="post">
             <TopoPost userImg={props.userImg} user={props.user}/>
 
             <div class="conteudo">
-                <img src={props.content} onClick={like}/>
+                <img src={props.content} onClick={() => setIsLiked(true)}/>
             </div>
 
             <div class="fundo">
                 <div class="acoes">
                     <div>
-                        { isLiked ? <ion-icon name="heart" class="liked" onClick={like}></ion-icon> : <ion-icon name="heart-outline" onClick={like}></ion-icon>}
+                        {isLiked ? <ion-icon name="heart" class="liked" onClick={toggleLike}></ion-icon> : <ion-icon name="heart-outline" onClick={toggleLike}></ion-icon>}
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
