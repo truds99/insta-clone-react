@@ -1,3 +1,6 @@
+import React from "react";
+
+
 function Usuario(props) {
     return (
         <div class="usuario">
@@ -14,6 +17,13 @@ function Usuario(props) {
 }
 
 function Sugestao(props) {
+
+    const [seguir, setSeguir] = React.useState("Seguir");
+
+    function toggleSeguir() {
+        seguir === "Seguir" ? setSeguir("Seguindo") : setSeguir("Seguir");
+    }
+
     return (
         <div class="sugestao">
             <div class="usuario">
@@ -24,7 +34,7 @@ function Sugestao(props) {
                 </div>
             </div>
 
-            <div class="seguir">Seguir</div>
+            <div class="seguir" onClick={toggleSeguir}>{seguir}</div>
         </div>
     )
 }
