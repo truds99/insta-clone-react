@@ -1,3 +1,5 @@
+import React from "react";
+
 function TopoPost(props) { 
     return (
         <div class="topo">
@@ -13,18 +15,25 @@ function TopoPost(props) {
 }
 
 function Post(props) {
+
+    const[isLiked, setIsLiked] = React.useState(props.isLiked);
+
+    function like(){
+        !isLiked ? setIsLiked(true) : setIsLiked(false);
+    }
+
     return (
         <div class="post">
             <TopoPost userImg={props.userImg} user={props.user}/>
 
             <div class="conteudo">
-                <img src={props.content} />
+                <img src={props.content} onClick={like}/>
             </div>
 
             <div class="fundo">
                 <div class="acoes">
                     <div>
-                        <ion-icon name="heart-outline"></ion-icon>
+                        { isLiked ? <ion-icon name="heart" class="liked" onClick={like}></ion-icon> : <ion-icon name="heart-outline" onClick={like}></ion-icon>}
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
@@ -51,7 +60,8 @@ const postsData = [
       content: 'assets/img/gato-telefone.svg',
       likes: '101.523',
       userLike: 'respondeai',
-      imgLikes: 'assets/img/respondeai.svg'
+      imgLikes: 'assets/img/respondeai.svg',
+      isLiked: false
     },
     {
       user: 'jane_doe',
@@ -59,13 +69,17 @@ const postsData = [
       content: 'assets/img/dog.svg',
       likes: 15,
       userLike: 'remboline',
-      imgLikes: 'assets/img/adorable_animals.svg'
+      imgLikes: 'assets/img/adorable_animals.svg',
+      isLiked: false
     },
 ]
 export default function Posts() {
     return (
         <div class="posts">
-            {postsData.map(elm => <Post user={elm.user} userImg={elm.userImg} content={elm.content} likes={elm.likes} userLike={elm.userLike} imgLikes={elm.imgLikes}/>)}
+            {postsData.map(elm => <Post 
+            user={elm.user} userImg={elm.userImg} 
+            content={elm.content} likes={elm.likes}
+             userLike={elm.userLike} imgLikes={elm.imgLikes}/>)}
         </div>
     )
 }
