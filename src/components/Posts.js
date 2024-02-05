@@ -18,8 +18,19 @@ function Post(props) {
 
     const[isLiked, setIsLiked] = React.useState(props.isLiked);
 
-    function toggleLike(){
-        setIsLiked(!isLiked);
+    const[numberLikes, setNumberLikes] = React.useState(props.likes);
+
+    function toggleLike(a){
+        if (a === 1){
+            setIsLiked(true);
+            if(!isLiked) {
+                setNumberLikes(numberLikes + 1);
+            }
+        }
+        else {
+            setIsLiked(!isLiked);
+            isLiked ? setNumberLikes(numberLikes - 1) : setNumberLikes(numberLikes + 1);
+        }
     }
 
 
@@ -28,13 +39,13 @@ function Post(props) {
             <TopoPost userImg={props.userImg} user={props.user}/>
 
             <div class="conteudo">
-                <img src={props.content} onClick={() => setIsLiked(true)}/>
+                <img src={props.content} onClick={() => toggleLike(1)}/>
             </div>
 
             <div class="fundo">
                 <div class="acoes">
                     <div>
-                        {isLiked ? <ion-icon name="heart" class="liked" onClick={toggleLike}></ion-icon> : <ion-icon name="heart-outline" onClick={toggleLike}></ion-icon>}
+                        {isLiked ? <ion-icon name="heart" class="liked" onClick={() => toggleLike(2)}></ion-icon> : <ion-icon name="heart-outline" onClick={toggleLike}></ion-icon>}
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
@@ -46,7 +57,7 @@ function Post(props) {
                 <div class="curtidas">
                     <img src={props.imgLikes} />
                     <div class="texto">
-                        Curtido por <strong>{props.userLike}</strong> e <strong>outras {props.likes} pessoas</strong>
+                        Curtido por <strong>{props.userLike}</strong> e <strong>outras {numberLikes} pessoas</strong>
                     </div>
                 </div>
             </div>
@@ -59,7 +70,7 @@ const postsData = [
       user: 'meowed',
       userImg: 'assets/img/meowed.svg',
       content: 'assets/img/gato-telefone.svg',
-      likes: '101.523',
+      likes: 101,
       userLike: 'respondeai',
       imgLikes: 'assets/img/respondeai.svg',
       isLiked: false
