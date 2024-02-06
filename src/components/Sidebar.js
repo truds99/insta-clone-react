@@ -1,14 +1,14 @@
 import React from "react";
 
 
-function Usuario(props) {
+function Usuario({img, user}) {
     return (
         <div className="usuario">
-            <img src={props.img} />
+            <img src={img} />
             <div className="texto">
                 <strong>catanacomics</strong>
                 <span>
-                    {props.user}
+                    {user}
                     <ion-icon name="pencil"></ion-icon>
                 </span>
             </div>
@@ -16,7 +16,7 @@ function Usuario(props) {
     )
 }
 
-function Sugestao(props) {
+function Sugestao({img, nome, razao}) {
 
     const [seguir, setSeguir] = React.useState("Seguir");
 
@@ -27,10 +27,10 @@ function Sugestao(props) {
     return (
         <div className="sugestao">
             <div className="usuario">
-                <img src={props.img} />
+                <img src={img} />
                 <div className="texto">
-                    <div className="nome">{props.nome}</div>
-                    <div className="razao">{props.razao}</div>
+                    <div className="nome">{nome}</div>
+                    <div className="razao">{razao}</div>
                 </div>
             </div>
 

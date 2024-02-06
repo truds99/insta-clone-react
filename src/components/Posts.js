@@ -1,11 +1,11 @@
 import React from "react";
 
-function TopoPost(props) { 
+function TopoPost({userImg, user}) { 
     return (
         <div className="topo">
             <div className="usuario">
-                <img src={props.userImg} />
-                {props.user}
+                <img src={userImg} />
+                {user}
             </div>
             <div className="acoes">
                 <ion-icon name="ellipsis-horizontal"></ion-icon>
@@ -14,38 +14,40 @@ function TopoPost(props) {
     )
 }
 
-function Post(props) {
+function Post({
+    isLiked, likes, userImg, user, content, imgLikes, userLike 
+}) {
 
-    const[isLiked, setIsLiked] = React.useState(props.isLiked);
+    const[liked, setLiked] = React.useState(isLiked);
 
-    const[numberLikes, setNumberLikes] = React.useState(props.likes);
+    const[numberOfLikes, setNumberOfLikes] = React.useState(likes);
 
     function toggleLike(a){
         if (a === 1){
-            setIsLiked(true);
-            if(!isLiked) {
-                setNumberLikes(numberLikes + 1);
+            setLiked(true);
+            if(!liked) {
+                setNumberOfLikes(numberOfLikes + 1);
             }
         }
         else {
-            setIsLiked(!isLiked);
-            isLiked ? setNumberLikes(numberLikes - 1) : setNumberLikes(numberLikes + 1);
+            setLiked(!liked);
+            liked ? setNumberOfLikes(numberOfLikes - 1) : setNumberOfLikes(numberOfLikes + 1);
         }
     }
 
 
     return (
         <div className="post">
-            <TopoPost userImg={props.userImg} user={props.user}/>
+            <TopoPost userImg={userImg} user={user}/>
 
             <div className="conteudo">
-                <img src={props.content} onClick={() => toggleLike(1)}/>
+                <img src={content} onClick={() => toggleLike(1)}/>
             </div>
 
             <div className="fundo">
                 <div className="acoes">
                     <div>
-                        {isLiked ? <ion-icon name="heart" class="liked" onClick={() => toggleLike(2)}></ion-icon> : <ion-icon name="heart-outline" onClick={() => toggleLike(2)}></ion-icon>}
+                        {liked ? <ion-icon name="heart" class="liked" onClick={() => toggleLike(2)}></ion-icon> : <ion-icon name="heart-outline" onClick={() => toggleLike(2)}></ion-icon>}
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
@@ -55,9 +57,9 @@ function Post(props) {
                 </div>
 
                 <div className="curtidas">
-                    <img src={props.imgLikes} />
+                    <img src={imgLikes} />
                     <div className="texto">
-                        Curtido por <strong>{props.userLike}</strong> e <strong>outras {numberLikes} pessoas</strong>
+                        Curtido por <strong>{userLike}</strong> e <strong>outras {numberOfLikes} pessoas</strong>
                     </div>
                 </div>
             </div>
