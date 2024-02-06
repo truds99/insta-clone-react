@@ -2,12 +2,12 @@ import React from "react";
 
 function TopoPost(props) { 
     return (
-        <div class="topo">
-            <div class="usuario">
+        <div className="topo">
+            <div className="usuario">
                 <img src={props.userImg} />
                 {props.user}
             </div>
-            <div class="acoes">
+            <div className="acoes">
                 <ion-icon name="ellipsis-horizontal"></ion-icon>
             </div>
         </div>
@@ -35,17 +35,17 @@ function Post(props) {
 
 
     return (
-        <div class="post">
+        <div className="post">
             <TopoPost userImg={props.userImg} user={props.user}/>
 
-            <div class="conteudo">
+            <div className="conteudo">
                 <img src={props.content} onClick={() => toggleLike(1)}/>
             </div>
 
-            <div class="fundo">
-                <div class="acoes">
+            <div className="fundo">
+                <div className="acoes">
                     <div>
-                        {isLiked ? <ion-icon name="heart" class="liked" onClick={() => toggleLike(2)}></ion-icon> : <ion-icon name="heart-outline" onClick={toggleLike}></ion-icon>}
+                        {isLiked ? <ion-icon name="heart" class="liked" onClick={() => toggleLike(2)}></ion-icon> : <ion-icon name="heart-outline" onClick={() => toggleLike(2)}></ion-icon>}
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
@@ -54,9 +54,9 @@ function Post(props) {
                     </div>
                 </div>
 
-                <div class="curtidas">
+                <div className="curtidas">
                     <img src={props.imgLikes} />
-                    <div class="texto">
+                    <div className="texto">
                         Curtido por <strong>{props.userLike}</strong> e <strong>outras {numberLikes} pessoas</strong>
                     </div>
                 </div>
@@ -87,11 +87,11 @@ const postsData = [
 ]
 export default function Posts() {
     return (
-        <div class="posts">
-            {postsData.map(elm => <Post 
+        <div className="posts">
+            {postsData.map((elm, idx) => <Post 
             user={elm.user} userImg={elm.userImg} 
-            content={elm.content} likes={elm.likes}
-             userLike={elm.userLike} imgLikes={elm.imgLikes}/>)}
+            content={elm.content} likes={elm.likes} key={idx}
+            userLike={elm.userLike} imgLikes={elm.imgLikes}/>)}
         </div>
     )
 }

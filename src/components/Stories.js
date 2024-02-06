@@ -1,10 +1,10 @@
 function Story(props) {
     return (
-        <div class="story">
-            <div class="imagem">
+        <div className="story">
+            <div className="imagem">
                 <img src={props.img} />
             </div>
-            <div class="usuario">
+            <div className="usuario">
                 {props.user}
             </div>
         </div>
@@ -24,9 +24,9 @@ const storiesData = [
 
 export default function Stories(){
     return (
-        <div class="stories">
-            {storiesData.map(elm => <Story img={elm.img} user={elm.user}/>)}
-            <div class="setinha">
+        <div className="stories">
+            {storiesData.map((elm, idx) => <Story img={elm.img} user={elm.user} key={idx}/>)}
+            <div className="setinha">
                 <ion-icon name="chevron-forward-circle"></ion-icon>
             </div>
         </div>

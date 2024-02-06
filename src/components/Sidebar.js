@@ -3,9 +3,9 @@ import React from "react";
 
 function Usuario(props) {
     return (
-        <div class="usuario">
+        <div className="usuario">
             <img src={props.img} />
-            <div class="texto">
+            <div className="texto">
                 <strong>catanacomics</strong>
                 <span>
                     {props.user}
@@ -25,16 +25,16 @@ function Sugestao(props) {
     }
 
     return (
-        <div class="sugestao">
-            <div class="usuario">
+        <div className="sugestao">
+            <div className="usuario">
                 <img src={props.img} />
-                <div class="texto">
-                    <div class="nome">{props.nome}</div>
-                    <div class="razao">{props.razao}</div>
+                <div className="texto">
+                    <div className="nome">{props.nome}</div>
+                    <div className="razao">{props.razao}</div>
                 </div>
             </div>
 
-            <div class="seguir" onClick={toggleSeguir}>{seguir}</div>
+            <div className="seguir" onClick={toggleSeguir}>{seguir}</div>
         </div>
     )
 }
@@ -70,23 +70,25 @@ const sugestaoData = [
 
 export default function Sidebar() {
     return (
-        <div class="sidebar">
+        <div className="sidebar">
             <Usuario user='Catana' img='assets/img/catanacomics.svg'/>
 
-            <div class="sugestoes">
-                <div class="titulo">
+            <div className="sugestoes">
+                <div className="titulo">
                     Sugestões para você
                     <div>Ver tudo</div>
                 </div>
-                {sugestaoData.map(elm => <Sugestao img={elm.img} nome={elm.nome} razao={elm.razao}/>)}
+                {sugestaoData.map((elm, idx) => 
+                <Sugestao
+                img={elm.img} nome={elm.nome} razao={elm.razao} key={idx}/>)}
             </div>
 
-            <div class="links">
+            <div className="links">
                 Sobre • Ajuda • Imprensa • API • Carreiras • Privacidade • Termos • Localizações • Contas mais relevantes •
                 Hashtags • Idioma
             </div>
 
-            <div class="copyright">
+            <div className="copyright">
                 © 2021 INSTAGRAM DO FACEBOOK
             </div>
         </div>
