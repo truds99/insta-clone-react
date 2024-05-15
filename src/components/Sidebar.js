@@ -4,6 +4,7 @@ import React from "react";
 function User({img, user}) {
 
     const [userName, setUserName] = React.useState("catanacomics");
+    const [userPhoto, setUserPhoto] = React.useState(img);
 
     function editName() {
         let newName = prompt("Digite seu novo nome do usuário");
@@ -12,18 +13,25 @@ function User({img, user}) {
         }
     }
 
+    function editPhoto() {
+      let newPhoto = prompt("Digite a URL da nova foto");
+      if (newPhoto) {
+        setUserPhoto(newPhoto);
+      }
+    }
+
     return (
-        <div className="usuario">
-            <img src={img} />
-            <div className="texto">
-                <strong>{userName}</strong>
-                <span>
-                    {user}
-                    <ion-icon name="pencil" onClick={editName} ></ion-icon>
-                </span>
-            </div>
+      <div className="usuario">
+        <img src={userPhoto} onClick={editPhoto} />
+        <div className="texto">
+          <strong>{userName}</strong>
+          <span>
+            {user}
+            <ion-icon name="pencil" onClick={editName}></ion-icon>
+          </span>
         </div>
-    )
+      </div>
+    );
 }
 
 function Suggestion({img, nome, razao}) {
