@@ -68,25 +68,34 @@ function Post({
 }
 
 const postsData = [
-    {
-      user: 'meowed',
-      userImg: 'assets/img/meowed.svg',
-      content: 'assets/img/gato-telefone.svg',
-      likes: 101,
-      userLike: 'respondeai',
-      imgLikes: 'assets/img/respondeai.svg',
-      isLiked: false
-    },
-    {
-      user: 'jane_doe',
-      userImg: 'assets/img/barked.svg',
-      content: 'assets/img/dog.svg',
-      likes: 15,
-      userLike: 'remboline',
-      imgLikes: 'assets/img/adorable_animals.svg',
-      isLiked: false
-    },
-]
+  {
+    user: "meowed",
+    userImg: "assets/img/meowed.svg",
+    content: "assets/img/gato-telefone.svg",
+    likes: 101,
+    userLike: "respondeai",
+    imgLikes: "assets/img/respondeai.svg",
+    isLiked: false,
+  },
+  {
+    user: "jane_doe",
+    userImg: "assets/img/barked.svg",
+    content: "assets/img/dog.svg",
+    likes: 15,
+    userLike: "remboline",
+    imgLikes: "assets/img/adorable_animals.svg",
+    isLiked: false,
+  },
+  {
+    user: "meowed",
+    userImg: "assets/img/meowed.svg",
+    content: "assets/img/cat.jpg",
+    likes: 77,
+    userLike: "respondeai",
+    imgLikes: "assets/img/respondeai.svg",
+    isLiked: false,
+  },
+];
 export default function Posts() {
     return (
         <div className="posts">
