@@ -2,7 +2,7 @@ import Stories from './Stories';
 import Posts from './Posts';
 import Sidebar from './Sidebar';
 
-export default function Corpo() {
+export default function Body() {
     return (
         <div className="corpo">
             <div className="esquerda">

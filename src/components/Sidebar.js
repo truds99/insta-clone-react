@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function Usuario({img, user}) {
+function User({img, user}) {
     return (
         <div className="usuario">
             <img src={img} />
@@ -16,7 +16,7 @@ function Usuario({img, user}) {
     )
 }
 
-function Sugestao({img, nome, razao}) {
+function Suggestion({img, nome, razao}) {
 
     const [seguir, setSeguir] = React.useState("Seguir");
 
@@ -67,20 +67,28 @@ const sugestaoData = [
     },
 ];
 
+function Suggestions () {
+
+    return (
+      <>
+        {sugestaoData.map((elm, idx) => (
+        <Suggestion img={elm.img} nome={elm.nome} razao={elm.razao} key={idx} />
+        ))}
+      </>
+    );
+}
 
 export default function Sidebar() {
     return (
         <div className="sidebar">
-            <Usuario user='Catana' img='assets/img/catanacomics.svg'/>
+            <User user='Catana' img='assets/img/catanacomics.svg'/>
 
             <div className="sugestoes">
                 <div className="titulo">
                     Sugestões para você
                     <div>Ver tudo</div>
                 </div>
-                {sugestaoData.map((elm, idx) => 
-                <Sugestao
-                img={elm.img} nome={elm.nome} razao={elm.razao} key={idx}/>)}
+                <Suggestions />
             </div>
 
             <div className="links">
