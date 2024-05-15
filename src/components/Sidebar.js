@@ -2,14 +2,24 @@ import React from "react";
 
 
 function User({img, user}) {
+
+    const [userName, setUserName] = React.useState("catanacomics");
+
+    function editName() {
+        let newName = prompt("Digite seu novo nome do usuário");
+        if (newName) {
+            setUserName(newName);
+        }
+    }
+
     return (
         <div className="usuario">
             <img src={img} />
             <div className="texto">
-                <strong>catanacomics</strong>
+                <strong>{userName}</strong>
                 <span>
                     {user}
-                    <ion-icon name="pencil"></ion-icon>
+                    <ion-icon name="pencil" onClick={editName} ></ion-icon>
                 </span>
             </div>
         </div>
