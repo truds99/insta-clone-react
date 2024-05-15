@@ -15,10 +15,11 @@ function TopoPost({userImg, user}) {
 }
 
 function Post({
-    isLiked, likes, userImg, user, content, imgLikes, userLike 
+    isLiked, likes, userImg, user, content, imgLikes, userLike, isSaved
 }) {
 
     const[liked, setLiked] = React.useState(isLiked);
+    const [saved, setSaved] = React.useState(isSaved);
 
     const[numberOfLikes, setNumberOfLikes] = React.useState(likes);
 
@@ -35,36 +36,50 @@ function Post({
         }
     }
 
-
     return (
-        <div className="post">
-            <TopoPost userImg={userImg} user={user}/>
+      <div className="post">
+        <TopoPost userImg={userImg} user={user} />
 
-            <div className="conteudo">
-                <img src={content} onClick={() => toggleLike(1)}/>
-            </div>
-
-            <div className="fundo">
-                <div className="acoes">
-                    <div>
-                        {liked ? <ion-icon name="heart" class="liked" onClick={() => toggleLike(2)}></ion-icon> : <ion-icon name="heart-outline" onClick={() => toggleLike(2)}></ion-icon>}
-                        <ion-icon name="chatbubble-outline"></ion-icon>
-                        <ion-icon name="paper-plane-outline"></ion-icon>
-                    </div>
-                    <div>
-                        <ion-icon name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div className="curtidas">
-                    <img src={imgLikes} />
-                    <div className="texto">
-                        Curtido por <strong>{userLike}</strong> e <strong>outras {numberOfLikes} pessoas</strong>
-                    </div>
-                </div>
-            </div>
+        <div className="conteudo">
+          <img src={content} onClick={() => toggleLike(1)} />
         </div>
-    )
+
+        <div className="fundo">
+          <div className="acoes">
+            <div>
+              {liked ? (
+                <ion-icon
+                  name="heart"
+                  class="liked"
+                  onClick={() => toggleLike(2)}
+                ></ion-icon>
+              ) : (
+                <ion-icon
+                  name="heart-outline"
+                  onClick={() => toggleLike(2)}
+                ></ion-icon>
+              )}
+              <ion-icon name="chatbubble-outline"></ion-icon>
+              <ion-icon name="paper-plane-outline"></ion-icon>
+            </div>
+            <div>
+              <ion-icon
+                name={saved ? "bookmark" : "bookmark-outline"}
+                onClick={() => setSaved(!saved)}
+              ></ion-icon>
+            </div>
+          </div>
+
+          <div className="curtidas">
+            <img src={imgLikes} />
+            <div className="texto">
+              Curtido por <strong>{userLike}</strong> e{" "}
+              <strong>outras {numberOfLikes} pessoas</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
 }
 
 const postsData = [
@@ -76,6 +91,7 @@ const postsData = [
     userLike: "respondeai",
     imgLikes: "assets/img/respondeai.svg",
     isLiked: false,
+    isSaved: false
   },
   {
     user: "jane_doe",
@@ -85,6 +101,7 @@ const postsData = [
     userLike: "remboline",
     imgLikes: "assets/img/adorable_animals.svg",
     isLiked: false,
+    isSaved: false
   },
   {
     user: "meowed",
@@ -94,6 +111,7 @@ const postsData = [
     userLike: "respondeai",
     imgLikes: "assets/img/respondeai.svg",
     isLiked: false,
+    isSaved: false
   },
 ];
 export default function Posts() {
@@ -102,7 +120,8 @@ export default function Posts() {
             {postsData.map((elm, idx) => <Post 
             user={elm.user} userImg={elm.userImg} 
             content={elm.content} likes={elm.likes} key={idx}
-            userLike={elm.userLike} imgLikes={elm.imgLikes}/>)}
+            userLike={elm.userLike} imgLikes={elm.imgLikes}
+            isLiked={elm.isLiked} isSaved={elm.isSaved}/>)}
         </div>
     )
 }
